@@ -1,0 +1,30 @@
+{
+  "parkour-block-7": {
+    "title": "Parkour Block 7",
+    "plays": "1.2k",
+    "category": "action",
+    "iframeUrl": "https://gamedistribution.gamiary.com/13215160b460481492b582a5081b49a1/",
+    "description": "Dive into the heart-pounding action of Parkour Block 7, an exhilarating game that combines high-octane parkour mechanics with thrilling combat challenges. Whether you're a fan of fast-paced movement or strategic battles, this game offers a dynamic experience that keeps players hooked from start to finish. Released on August 8, 2025, it has quickly become a favorite among action enthusiasts.",
+    "gameplay": "In Parkour Block 7, you'll navigate through intricately designed levels filled with obstacles, enemies, and hidden secrets. The game's fluid parkour system lets you run, jump, slide, and climb with precision, while its robust combat mechanics allow you to take down foes with style.",
+    "features": [
+      "Dynamic Movement: Master the art of parkour as you traverse challenging terrains and avoid deadly traps.",
+      "Engaging Combat: Use a variety of weapons and skills to defeat enemies and dominate the battlefield.",
+      "Rich Content: Explore diverse environments, unlock new abilities, and uncover hidden treasures throughout your journey.",
+      "Progressive Difficulty: As you advance, the challenges become more intense, testing your reflexes and strategy."
+    ]
+  },
+  "escape-road": {
+    "title": "Escape Road",
+    "plays": "2.5k",
+    "category": "action",
+    "iframeUrl": "https://gamedistribution.gamiary.com/13215160b460481492b582a5081b49a1/",
+    "description": "Escape Road is a high-speed driving game where you must outrun the police and navigate through city traffic. Speed through multiple environments and unlock faster cars as you survive.",
+    "gameplay": "Use your driving skills to dodge obstacles and police cars. Collect power-ups along the way to boost your speed and durability.",
+    "features": [
+      "High-speed action",
+      "Multiple unlockable vehicles",
+      "Challenging AI police",
+      "Dynamic city environments"
+    ]
+  }
+}

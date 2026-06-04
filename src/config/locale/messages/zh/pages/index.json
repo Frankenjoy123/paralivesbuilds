@@ -1,0 +1,16 @@
+{
+  "page": {
+    "show_sections": [
+      "gamiary-home-grid",
+      "gamiary-seo-content"
+    ],
+    "sections": {
+      "gamiary-home-grid": {
+        "id": "gamiary-home-grid"
+      },
+      "gamiary-seo-content": {
+        "id": "gamiary-seo-content"
+      }
+    }
+  }
+}

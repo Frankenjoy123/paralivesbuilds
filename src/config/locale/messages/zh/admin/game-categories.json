@@ -1,0 +1,60 @@
+{
+  "list": {
+    "title": "游戏分类管理",
+    "crumbs": {
+      "admin": "管理后台",
+      "game_categories": "游戏分类"
+    },
+    "buttons": {
+      "add": "添加分类",
+      "edit": "编辑",
+      "publish": "上架",
+      "unpublish": "下架",
+      "delete": "删除",
+      "confirm_delete": "确定要删除这个分类吗？此操作不可撤销。"
+    },
+    "messages": {
+      "success": "操作成功",
+      "error": "操作失败"
+    }
+  },
+  "add": {
+    "title": "添加游戏分类",
+    "crumbs": {
+      "admin": "管理后台",
+      "game_categories": "游戏分类",
+      "add": "添加"
+    },
+    "buttons": {
+      "submit": "提交"
+    }
+  },
+  "edit": {
+    "title": "编辑游戏分类",
+    "crumbs": {
+      "admin": "管理后台",
+      "game_categories": "游戏分类",
+      "edit": "编辑"
+    },
+    "buttons": {
+      "submit": "更新"
+    }
+  },
+  "fields": {
+    "slug": "标识 (Slug)",
+    "name": "名称",
+    "description": "描述 (Markdown)",
+    "image": "图片",
+    "icon": "Lucide 图标",
+    "status": "状态",
+    "sort": "排序",
+    "created_at": "创建时间",
+    "updated_at": "更新时间",
+    "editor": "编辑器",
+    "preview": "实时预览",
+    "preview_mode": "预览模式",
+    "begin_preview": "开始预览",
+    "preview_pc": "电脑端",
+    "preview_mobile": "移动端"
+  }
+}

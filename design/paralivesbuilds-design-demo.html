@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParalivesBuilds — House Design Inspiration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #faf9f7;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b6b6b;
+            --text-muted: #9a9a9a;
+            --accent: #e07a5f;
+            --accent-hover: #c96a52;
+            --border: #e8e6e3;
+            --shadow: 0 2px 12px rgba(0,0,0,0.06);
+            --shadow-hover: 0 8px 32px rgba(0,0,0,0.12);
+            --radius: 14px;
+            --radius-sm: 8px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(250,249,247,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #e07a5f 0%, #f2cc8f 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text-primary); }
+
+        .nav-links a.active { color: var(--accent); font-weight: 600; }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 240px;
+            padding: 8px 16px 8px 36px;
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            background: var(--bg-card);
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent);
+            width: 280px;
+        }
+
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            opacity: 0.5;
+        }
+
+        .btn-primary {
+            padding: 10px 20px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+        .btn-secondary {
+            padding: 10px 20px;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-secondary:hover { background: var(--bg-card); border-color: var(--text-muted); }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 80px 24px 60px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #e07a5f 0%, #f2cc8f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        /* ===== STYLE STRIP ===== */
+        .style-strip {
+            max-width: 1280px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+
+        .style-strip h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .style-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+        }
+
+        .style-scroll::-webkit-scrollbar { display: none; }
+
+        .style-chip {
+            flex-shrink: 0;
+            padding: 10px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .style-chip:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .style-chip.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* ===== SECTION HEADER ===== */
+        .section-header {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 24px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .section-header a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* ===== MASONRY GRID ===== */
+        .masonry-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .masonry-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .masonry-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .hero h1 { font-size: 32px; }
+            .nav-links { display: none; }
+            .search-box input { width: 160px; }
+        }
+
+        /* ===== BUILD CARD ===== */
+        .build-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .build-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .build-card:nth-child(2) { grid-row: span 2; }
+        .build-card:nth-child(5) { grid-row: span 2; }
+        .build-card:nth-child(8) { grid-row: span 2; }
+
+        .card-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .build-card:nth-child(2) .card-image,
+        .build-card:nth-child(5) .card-image,
+        .build-card:nth-child(8) .card-image {
+            aspect-ratio: 3/4;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .build-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 4px 10px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 16px 16px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            opacity: 0.85;
+        }
+
+        .card-meta .dot {
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .card-info {
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-creator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .creator-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e07a5f, #f2cc8f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .creator-name {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .card-stats {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .card-stats span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* ===== DETAIL PAGE ===== */
+        .detail-page { display: none; }
+
+        .detail-hero {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 968px) {
+            .detail-hero { grid-template-columns: 1fr; }
+        }
+
+        .gallery {
+            position: sticky;
+            top: 80px;
+        }
+
+        .main-image {
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--border);
+            margin-bottom: 12px;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumb-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .thumb {
+            width: 80px;
+            height: 60px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            opacity: 0.7;
+        }
+
+        .thumb:hover, .thumb.active {
+            opacity: 1;
+            border-color: var(--accent);
+        }
+
+        .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-info h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .detail-creator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-creator .creator-avatar {
+            width: 40px;
+            height: 40px;
+            font-size: 14px;
+        }
+
+        .detail-creator-info h4 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .detail-creator-info p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .detail-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .tag {
+            padding: 6px 14px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .tag.accent {
+            background: rgba(224,122,95,0.1);
+            border-color: rgba(224,122,95,0.2);
+            color: var(--accent);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .info-item {
+            padding: 16px;
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+        }
+
+        .info-item label {
+            display: block;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 4px;
+        }
+
+        .info-item value {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .detail-actions {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .detail-actions .btn-primary {
+            flex: 1;
+            justify-content: center;
+            padding: 14px 24px;
+            font-size: 15px;
+        }
+
+        .detail-actions .btn-secondary {
+            padding: 14px 20px;
+        }
+
+        .detail-description {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .detail-description h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 24px 0 12px;
+        }
+
+        /* ===== BROWSE PAGE ===== */
+        .browse-page { display: none; }
+
+        .filter-bar {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .filter-select {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--bg-card);
+            font-size: 14px;
+            color: var(--text-primary);
+            cursor: pointer;
+            outline: none;
+        }
+
+        .filter-select:focus { border-color: var(--accent); }
+
+        .results-count {
+            margin-left: auto;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .results-count strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 80px;
+            padding: 40px 24px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover { color: var(--accent); }
+
+        /* ===== BREADCRUMB ===== */
+        .breadcrumb {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 16px 24px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .breadcrumb span { margin: 0 8px; }
+
+        /* ===== RELATED ===== */
+        .related-section {
+            max-width: 1280px;
+            margin: 60px auto 0;
+            padding: 0 24px;
+        }
+
+        .related-section h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        /* ===== PAGE SWITCHER ===== */
+        .page-nav {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            background: var(--bg-card);
+            padding: 8px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-hover);
+            border: 1px solid var(--border);
+            z-index: 200;
+        }
+
+        .page-nav button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: transparent;
+            color: var(--text-secondary);
+        }
+
+        .page-nav button.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        .page-nav button:hover:not(.active) {
+            background: var(--bg);
+            color: var(--text-primary);
+        }
+
+        /* ===== LOADING SKELETON ===== */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .skeleton {
+            background: linear-gradient(90deg, var(--bg) 25%, var(--border) 50%, var(--bg) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: var(--radius-sm);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <div class="nav-inner">
+        <a href="#" class="logo">
+            <div class="logo-icon">🏠</div>
+            ParalivesBuilds
+        </a>
+        <div class="nav-links">
+            <a href="#" class="active" onclick="showPage('home')">Home</a>
+            <a href="#" onclick="showPage('browse')">Browse</a>
+            <a href="#">Creators</a>
+            <a href="#">Guides</a>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;">
+            <div class="search-box">
+                <input type="text" placeholder="Search builds...">
+            </div>
+            <a href="#" class="btn-primary">Submit Build</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="home-page">
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Discover Amazing <span>Paralives Builds</span></h1>
+        <p>Find inspiration for your next home. Browse modern cottages, minimalist lofts, and creative designs from the Paralives community.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn-primary" onclick="showPage('browse')">🔥 Browse Builds</a>
+            <a href="#" class="btn-secondary">📤 Submit Your Build</a>
+        </div>
+    </section>
+
+    <!-- Style Strip -->
+    <div class="style-strip">
+        <h3>Browse by Style</h3>
+        <div class="style-scroll">
+            <a href="#" class="style-chip active">🏠 All</a>
+            <a href="#" class="style-chip">🏢 Modern</a>
+            <a href="#" class="style-chip">🌿 Cottage</a>
+            <a href="#" class="style-chip">⬜ Minimalist</a>
+            <a href="#" class="style-chip">🏭 Industrial</a>
+            <a href="#" class="style-chip">🪵 Rustic</a>
+            <a href="#" class="style-chip">🏛️ Victorian</a>
+            <a href="#" class="style-chip">🌴 Tropical</a>
+            <a href="#" class="style-chip">🏘️ Suburban</a>
+            <a href="#" class="style-chip">🚜 Farmhouse</a>
+        </div>
+    </div>
+
+    <!-- Featured Section -->
+    <div class="section-header">
+        <h2>🔥 Featured Builds</h2>
+        <a href="#" onclick="showPage('browse')">View all →</a>
+    </div>
+
+    <div class="masonry-grid">
+        <!-- Card 1 -->
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=450&fit=crop" alt="Modern Loft">
+                <div class="card-badge">Featured</div>
+                <div class="card-overlay">
+                    <div class="card-title">Modern Glass Loft</div>
+                    <div class="card-meta">
+                        <span>Modern</span>
+                        <span class="dot"></span>
+                        <span>30×20</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">A</div>
+                    <span class="creator-name">AlexBuilds</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 1.2k</span>
+                    <span>👁 8.5k</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 2 (Tall) -->
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&h=800&fit=crop" alt="Cozy Cottage">
+                <div class="card-badge">Popular</div>
+                <div class="card-overlay">
+                    <div class="card-title">Cozy Cottage Starter</div>
+                    <div class="card-meta">
+                        <span>Cottage</span>
+                        <span class="dot"></span>
+                        <span>20×15</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">M</div>
+                    <span class="creator-name">MiaDesigns</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 856</span>
+                    <span>👁 5.2k</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=450&fit=crop" alt="Suburban Family">
+                <div class="card-overlay">
+                    <div class="card-title">Suburban Family Home</div>
+                    <div class="card-meta">
+                        <span>Suburban</span>
+                        <span class="dot"></span>
+                        <span>40×30</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">J</div>
+                    <span class="creator-name">JordanBuilds</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 643</span>
+                    <span>👁 4.1k</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=450&fit=crop" alt="Minimalist Studio">
+                <div class="card-overlay">
+                    <div class="card-title">Minimalist Studio</div>
+                    <div class="card-meta">
+                        <span>Minimalist</span>
+                        <span class="dot"></span>
+                        <span>15×10</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">S</div>
+                    <span class="creator-name">StudioSim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 432</span>
+                    <span>👁 2.8k</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 5 (Tall) -->
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&h=800&fit=crop" alt="Tropical Villa">
+                <div class="card-badge">New</div>
+                <div class="card-overlay">
+                    <div class="card-title">Tropical Beach Villa</div>
+                    <div class="card-meta">
+                        <span>Tropical</span>
+                        <span class="dot"></span>
+                        <span>50×40</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">T</div>
+                    <span class="creator-name">TropicalSim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 321</span>
+                    <span>👁 1.9k</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 6 -->
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&h=450&fit=crop" alt="Industrial Loft">
+                <div class="card-overlay">
+                    <div class="card-title">Industrial Warehouse</div>
+                    <div class="card-meta">
+                        <span>Industrial</span>
+                        <span class="dot"></span>
+                        <span>30×20</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">R</div>
+                    <span class="creator-name">RusticSim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 298</span>
+                    <span>👁 1.7k</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 7 -->
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=600&h=450&fit=crop" alt="Farmhouse">
+                <div class="card-overlay">
+                    <div class="card-title">Modern Farmhouse</div>
+                    <div class="card-meta">
+                        <span>Farmhouse</span>
+                        <span class="dot"></span>
+                        <span>40×30</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">F</div>
+                    <span class="creator-name">FarmSim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 567</span>
+                    <span>👁 3.4k</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Card 8 (Tall) -->
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&h=800&fit=crop" alt="Victorian Mansion">
+                <div class="card-badge">Editor's Pick</div>
+                <div class="card-overlay">
+                    <div class="card-title">Victorian Mansion</div>
+                    <div class="card-meta">
+                        <span>Victorian</span>
+                        <span class="dot"></span>
+                        <span>50×50</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">V</div>
+                    <span class="creator-name">VictorianSim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 2.1k</span>
+                    <span>👁 12k</span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Latest Section -->
+    <div class="section-header">
+        <h2>🆕 Latest Uploads</h2>
+        <a href="#" onclick="showPage('browse')">View all →</a>
+    </div>
+
+    <div class="masonry-grid">
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&h=450&fit=crop" alt="Bohemian Retreat">
+                <div class="card-badge">New</div>
+                <div class="card-overlay">
+                    <div class="card-title">Bohemian Retreat</div>
+                    <div class="card-meta">
+                        <span>Bohemian</span>
+                        <span class="dot"></span>
+                        <span>25×20</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">B</div>
+                    <span class="creator-name">BohoSim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 89</span>
+                    <span>👁 456</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=450&fit=crop" alt="Rustic Cabin">
+                <div class="card-overlay">
+                    <div class="card-title">Rustic Mountain Cabin</div>
+                    <div class="card-meta">
+                        <span>Rustic</span>
+                        <span class="dot"></span>
+                        <span>30×25</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">R</div>
+                    <span class="creator-name">RusticBuilds</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 156</span>
+                    <span>👁 892</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=600&h=450&fit=crop" alt="Tiny Home">
+                <div class="card-overlay">
+                    <div class="card-title">Tiny Eco Home</div>
+                    <div class="card-meta">
+                        <span>Minimalist</span>
+                        <span class="dot"></span>
+                        <span>10×10</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">E</div>
+                    <span class="creator-name">EcoSim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 234</span>
+                    <span>👁 1.2k</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&h=450&fit=crop" alt="Luxury Villa">
+                <div class="card-overlay">
+                    <div class="card-title">Luxury Hillside Villa</div>
+                    <div class="card-meta">
+                        <span>Modern</span>
+                        <span class="dot"></span>
+                        <span>60×40</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">L</div>
+                    <span class="creator-name">LuxurySim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 445</span>
+                    <span>👁 2.8k</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- ===== BROWSE PAGE ===== -->
+<div id="page-browse" class="browse-page">
+    <div class="hero" style="padding: 40px 24px 30px;">
+        <h1>Browse All <span>Builds</span></h1>
+        <p>Filter by style, size, or search for your perfect home design.</p>
+    </div>
+
+    <div class="filter-bar">
+        <div class="filter-group">
+            <label>Style:</label>
+            <select class="filter-select">
+                <option>All Styles</option>
+                <option>Modern</option>
+                <option>Cottage</option>
+                <option>Minimalist</option>
+                <option>Industrial</option>
+                <option>Rustic</option>
+                <option>Victorian</option>
+                <option>Tropical</option>
+                <option>Suburban</option>
+                <option>Farmhouse</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Lot Size:</label>
+            <select class="filter-select">
+                <option>Any Size</option>
+                <option>Small (≤20×15)</option>
+                <option>Medium (20×15 - 40×30)</option>
+                <option>Large (≥40×30)</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Sort:</label>
+            <select class="filter-select">
+                <option>Newest</option>
+                <option>Most Popular</option>
+                <option>Most Viewed</option>
+            </select>
+        </div>
+        <div class="results-count">
+            Showing <strong>1-20</strong> of <strong>156</strong> builds
+        </div>
+    </div>
+
+    <div class="masonry-grid">
+        <!-- Same cards as home, but full grid -->
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=450&fit=crop" alt="Modern Loft">
+                <div class="card-badge">Featured</div>
+                <div class="card-overlay">
+                    <div class="card-title">Modern Glass Loft</div>
+                    <div class="card-meta">
+                        <span>Modern</span>
+                        <span class="dot"></span>
+                        <span>30×20</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">A</div>
+                    <span class="creator-name">AlexBuilds</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 1.2k</span>
+                    <span>👁 8.5k</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&h=450&fit=crop" alt="Cozy Cottage">
+                <div class="card-badge">Popular</div>
+                <div class="card-overlay">
+                    <div class="card-title">Cozy Cottage Starter</div>
+                    <div class="card-meta">
+                        <span>Cottage</span>
+                        <span class="dot"></span>
+                        <span>20×15</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">M</div>
+                    <span class="creator-name">MiaDesigns</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 856</span>
+                    <span>👁 5.2k</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=450&fit=crop" alt="Suburban Family">
+                <div class="card-overlay">
+                    <div class="card-title">Suburban Family Home</div>
+                    <div class="card-meta">
+                        <span>Suburban</span>
+                        <span class="dot"></span>
+                        <span>40×30</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">J</div>
+                    <span class="creator-name">JordanBuilds</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 643</span>
+                    <span>👁 4.1k</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=450&fit=crop" alt="Minimalist Studio">
+                <div class="card-overlay">
+                    <div class="card-title">Minimalist Studio</div>
+                    <div class="card-meta">
+                        <span>Minimalist</span>
+                        <span class="dot"></span>
+                        <span>15×10</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">S</div>
+                    <span class="creator-name">StudioSim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 432</span>
+                    <span>👁 2.8k</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&h=450&fit=crop" alt="Tropical Villa">
+                <div class="card-badge">New</div>
+                <div class="card-overlay">
+                    <div class="card-title">Tropical Beach Villa</div>
+                    <div class="card-meta">
+                        <span>Tropical</span>
+                        <span class="dot"></span>
+                        <span>50×40</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">T</div>
+                    <span class="creator-name">TropicalSim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 321</span>
+                    <span>👁 1.9k</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&h=450&fit=crop" alt="Industrial Loft">
+                <div class="card-overlay">
+                    <div class="card-title">Industrial Warehouse</div>
+                    <div class="card-meta">
+                        <span>Industrial</span>
+                        <span class="dot"></span>
+                        <span>30×20</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">R</div>
+                    <span class="creator-name">RusticSim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 298</span>
+                    <span>👁 1.7k</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=600&h=450&fit=crop" alt="Farmhouse">
+                <div class="card-overlay">
+                    <div class="card-title">Modern Farmhouse</div>
+                    <div class="card-meta">
+                        <span>Farmhouse</span>
+                        <span class="dot"></span>
+                        <span>40×30</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">F</div>
+                    <span class="creator-name">FarmSim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 567</span>
+                    <span>👁 3.4k</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="#" class="build-card" onclick="showPage('detail')">
+            <div class="card-image">
+                <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&h=450&fit=crop" alt="Victorian Mansion">
+                <div class="card-badge">Editor's Pick</div>
+                <div class="card-overlay">
+                    <div class="card-title">Victorian Mansion</div>
+                    <div class="card-meta">
+                        <span>Victorian</span>
+                        <span class="dot"></span>
+                        <span>50×50</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-info">
+                <div class="card-creator">
+                    <div class="creator-avatar">V</div>
+                    <span class="creator-name">VictorianSim</span>
+                </div>
+                <div class="card-stats">
+                    <span>❤️ 2.1k</span>
+                    <span>👁 12k</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- ===== DETAIL PAGE ===== -->
+<div id="page-detail" class="detail-page">
+    <div class="breadcrumb">
+        <a href="#" onclick="showPage('home')">Home</a>
+        <span>/</span>
+        <a href="#" onclick="showPage('browse')">Browse</a>
+        <span>/</span>
+        <a href="#">Modern</a>
+        <span>/</span>
+        <span style="color:var(--text-primary);">Modern Glass Loft</span>
+    </div>
+
+    <div class="detail-hero">
+        <div class="gallery">
+            <div class="main-image">
+                <img id="main-img" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=750&fit=crop" alt="Modern Glass Loft">
+            </div>
+            <div class="thumb-row">
+                <div class="thumb active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&h=750&fit=crop')">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=200&h=150&fit=crop" alt="Exterior">
+                </div>
+                <div class="thumb" onclick="changeImage(this, 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&h=750&fit=crop')">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=200&h=150&fit=crop" alt="Interior">
+                </div>
+                <div class="thumb" onclick="changeImage(this, 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=750&fit=crop')">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=150&fit=crop" alt="Living Room">
+                </div>
+                <div class="thumb" onclick="changeImage(this, 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=750&fit=crop')">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=200&h=150&fit=crop" alt="Bedroom">
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-info">
+            <h1>Modern Glass Loft</h1>
+
+            <div class="detail-creator">
+                <div class="creator-avatar" style="width:40px;height:40px;font-size:14px;">A</div>
+                <div class="detail-creator-info">
+                    <h4>AlexBuilds</h4>
+                    <p>128 builds · 45k followers</p>
+                </div>
+            </div>
+
+            <div class="detail-tags">
+                <span class="tag accent">🏢 Modern</span>
+                <span class="tag">🏠 Residential</span>
+                <span class="tag">💰 Budget: §45,000</span>
+                <span class="tag">🆕 EA Release</span>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Lot Size</label>
+                    <value>30×20</value>
+                </div>
+                <div class="info-item">
+                    <label>Floors</label>
+                    <value>2</value>
+                </div>
+                <div class="info-item">
+                    <label>Bedrooms</label>
+                    <value>3</value>
+                </div>
+                <div class="info-item">
+                    <label>Bathrooms</label>
+                    <value>2</value>
+                </div>
+                <div class="info-item">
+                    <label>Likes</label>
+                    <value>1,248</value>
+                </div>
+                <div class="info-item">
+                    <label>Views</label>
+                    <value>8,532</value>
+                </div>
+            </div>
+
+            <div class="detail-actions">
+                <a href="https://steamcommunity.com" target="_blank" class="btn-primary">
+                    🎮 Download on Steam
+                </a>
+                <button class="btn-secondary">❤️ 1.2k</button>
+                <button class="btn-secondary">📤 Share</button>
+            </div>
+
+            <div class="detail-description">
+                <h3>About This Build</h3>
+                <p>A stunning modern glass loft featuring floor-to-ceiling windows, an open-concept living space, and a rooftop terrace with panoramic views. Perfect for a young professional or a couple starting their Paralives journey.</p>
+
+                <h3>Features</h3>
+                <p>• Open-concept kitchen and living area<br>
+                • Master suite with en-suite bathroom<br>
+                • Home office with city views<br>
+                • Rooftop garden and entertainment area<br>
+                • Double garage with workshop space</p>
+
+                <h3>Requirements</h3>
+                <p>• Base Game only<br>
+                • No custom content required<br>
+                • Built on 30×20 lot</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related -->
+    <div class="related-section">
+        <h3>You Might Also Like</h3>
+        <div class="masonry-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <a href="#" class="build-card" onclick="showPage('detail')">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=450&fit=crop" alt="Minimalist Studio">
+                    <div class="card-overlay">
+                        <div class="card-title">Minimalist Studio</div>
+                        <div class="card-meta">
+                            <span>Minimalist</span>
+                            <span class="dot"></span>
+                            <span>15×10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <div class="card-creator">
+                        <div class="creator-avatar">S</div>
+                        <span class="creator-name">StudioSim</span>
+                    </div>
+                    <div class="card-stats">
+                        <span>❤️ 432</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="build-card" onclick="showPage('detail')">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600&h=450&fit=crop" alt="Bohemian Retreat">
+                    <div class="card-overlay">
+                        <div class="card-title">Bohemian Retreat</div>
+                        <div class="card-meta">
+                            <span>Bohemian</span>
+                            <span class="dot"></span>
+                            <span>25×20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <div class="card-creator">
+                        <div class="creator-avatar">B</div>
+                        <span class="creator-name">BohoSim</span>
+                    </div>
+                    <div class="card-stats">
+                        <span>❤️ 89</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="build-card" onclick="showPage('detail')">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?w=600&h=450&fit=crop" alt="Tiny Home">
+                    <div class="card-overlay">
+                        <div class="card-title">Tiny Eco Home</div>
+                        <div class="card-meta">
+                            <span>Minimalist</span>
+                            <span class="dot"></span>
+                            <span>10×10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <div class="card-creator">
+                        <div class="creator-avatar">E</div>
+                        <span class="creator-name">EcoSim</span>
+                    </div>
+                    <div class="card-stats">
+                        <span>❤️ 234</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="build-card" onclick="showPage('detail')">
+                <div class="card-image">
+                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&h=450&fit=crop" alt="Luxury Villa">
+                    <div class="card-overlay">
+                        <div class="card-title">Luxury Hillside Villa</div>
+                        <div class="card-meta">
+                            <span>Modern</span>
+                            <span class="dot"></span>
+                            <span>60×40</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-info">
+                    <div class="card-creator">
+                        <div class="creator-avatar">L</div>
+                        <span class="creator-name">LuxurySim</span>
+                    </div>
+                    <div class="card-stats">
+                        <span>❤️ 445</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Creators</a>
+        <a href="#">Guides</a>
+        <a href="#">Submit</a>
+        <a href="#">Privacy</a>
+    </div>
+    <p>© 2026 ParalivesBuilds. Not affiliated with Paralives Studio.</p>
+</footer>
+
+<!-- ===== PAGE SWITCHER (Demo Only) ===== -->
+<div class="page-nav">
+    <button class="active" onclick="showPage('home')">🏠 Home</button>
+    <button onclick="showPage('browse')">🔍 Browse</button>
+    <button onclick="showPage('detail')">📄 Detail</button>
+</div>
+
+<script>
+function showPage(page) {
+    // Hide all pages
+    document.querySelectorAll('.home-page, .browse-page, .detail-page').forEach(el => {
+        el.style.display = 'none';
+    });
+
+    // Show selected page
+    document.getElementById('page-' + page).style.display = 'block';
+
+    // Update nav buttons
+    document.querySelectorAll('.page-nav button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+
+    // Scroll to top
+    window.scrollTo(0, 0);
+}
+
+function changeImage(thumb, src) {
+    document.getElementById('main-img').src = src;
+    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+}
+
+// Initialize
+showPage('home');
+</script>
+
+</body>
+</html>

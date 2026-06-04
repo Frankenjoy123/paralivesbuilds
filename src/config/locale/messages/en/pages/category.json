@@ -1,0 +1,83 @@
+{
+  "action": {
+    "page": {
+      "sections": {
+        "gamiary-category-hero": {
+          "id": "gamiary-category-hero",
+          "data": {
+            "title": "Best Free Action Games Online 2026",
+            "subtitle": "Fast-paced action games to test your reflexes and reaction time.",
+            "also_looking_for": "Also looking for: <strong class=\"text-foreground\">no download action browser games</strong>, <strong class=\"text-foreground\">play action games unblocked at school</strong>.",
+            "description": "Discover free action games — instant play HTML5 games, mobile‑friendly browser titles, and quick short‑break picks with no signup.",
+            "explore_text": "Explore more action games",
+            "games_count": "137 games available",
+            "free_text": "Free to play",
+            "breadcrumb_current": "Action Games"
+          }
+        },
+        "gamiary-category-grid": {
+          "id": "gamiary-category-grid"
+        }
+      },
+      "show_sections": ["gamiary-category-hero", "gamiary-category-grid"]
+    }
+  },
+  "puzzle": {
+    "page": {
+      "sections": {
+        "gamiary-category-hero": {
+          "id": "gamiary-category-hero",
+          "data": {
+            "title": "Best Free Puzzle Games Online 2026",
+            "subtitle": "Challenge your mind with the best collection of online puzzle games.",
+            "description": "Relax and sharpen your brain with our handpicked puzzle games. No download required, perfect for all ages.",
+            "explore_text": "More puzzle challenges",
+            "games_count": "94 games available",
+            "free_text": "Free to play",
+            "breadcrumb_current": "Puzzle Games"
+          }
+        },
+        "gamiary-category-grid": {
+          "id": "gamiary-category-grid"
+        }
+      },
+      "show_sections": ["gamiary-category-hero", "gamiary-category-grid"]
+    }
+  },
+  "racing": {
+    "page": {
+      "sections": {
+        "gamiary-category-hero": {
+          "id": "gamiary-category-hero",
+          "data": { "title": "Free Racing Games — Speed & Fun", "breadcrumb_current": "Racing Games" }
+        },
+        "gamiary-category-grid": { "id": "gamiary-category-grid" }
+      },
+      "show_sections": ["gamiary-category-hero", "gamiary-category-grid"]
+    }
+  },
+  "sports": {
+    "page": {
+      "sections": {
+        "gamiary-category-hero": {
+          "id": "gamiary-category-hero",
+          "data": { "title": "Online Sports Games", "breadcrumb_current": "Sports Games" }
+        },
+        "gamiary-category-grid": { "id": "gamiary-category-grid" }
+      },
+      "show_sections": ["gamiary-category-hero", "gamiary-category-grid"]
+    }
+  },
+  "strategy": {
+    "page": {
+      "sections": {
+        "gamiary-category-hero": {
+          "id": "gamiary-category-hero",
+          "data": { "title": "Strategy Games Online", "breadcrumb_current": "Strategy Games" }
+        },
+        "gamiary-category-grid": { "id": "gamiary-category-grid" }
+      },
+      "show_sections": ["gamiary-category-hero", "gamiary-category-grid"]
+    }
+  }
+}

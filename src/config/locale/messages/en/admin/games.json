@@ -1,0 +1,58 @@
+{
+  "list": {
+    "title": "Games",
+    "search_placeholder": "Search games",
+    "crumbs": {
+      "admin": "Admin",
+      "games": "Games"
+    },
+    "buttons": {
+      "add": "Add Game",
+      "edit": "Edit",
+      "publish": "Publish",
+      "unpublish": "Unpublish",
+      "delete": "Delete",
+      "confirm_delete": "Are you sure you want to delete this game? This action cannot be undone."
+    },
+    "messages": {
+      "success": "Operation successful",
+      "error": "Operation failed"
+    }
+  },
+  "add": {
+    "title": "Add Game",
+    "crumbs": {
+      "admin": "Admin",
+      "games": "Games",
+      "add": "Add"
+    },
+    "buttons": {
+      "submit": "Submit"
+    }
+  },
+  "edit": {
+    "title": "Edit Game",
+    "crumbs": {
+      "admin": "Admin",
+      "games": "Games",
+      "edit": "Edit"
+    },
+    "buttons": {
+      "submit": "Update"
+    }
+  },
+  "fields": {
+    "slug": "Slug",
+    "title": "Title",
+    "content": "Game Detail (Markdown)",
+    "image": "Cover Image",
+    "game_url": "Game URL",
+    "category": "Category",
+    "plays": "Plays",
+    "likes": "Likes",
+    "status": "Status",
+    "sort": "Sort",
+    "created_at": "Created At",
+    "updated_at": "Updated At"
+  }
+}

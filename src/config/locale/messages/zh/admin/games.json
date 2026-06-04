@@ -1,0 +1,58 @@
+{
+  "list": {
+    "title": "游戏列表管理",
+    "search_placeholder": "搜索游戏",
+    "crumbs": {
+      "admin": "管理后台",
+      "games": "游戏列表"
+    },
+    "buttons": {
+      "add": "添加游戏",
+      "edit": "编辑",
+      "publish": "上架",
+      "unpublish": "下架",
+      "delete": "删除",
+      "confirm_delete": "确定要删除这个游戏吗？此操作不可撤销。"
+    },
+    "messages": {
+      "success": "操作成功",
+      "error": "操作失败"
+    }
+  },
+  "add": {
+    "title": "添加游戏",
+    "crumbs": {
+      "admin": "管理后台",
+      "games": "游戏列表",
+      "add": "添加"
+    },
+    "buttons": {
+      "submit": "提交"
+    }
+  },
+  "edit": {
+    "title": "编辑游戏",
+    "crumbs": {
+      "admin": "管理后台",
+      "games": "游戏列表",
+      "edit": "编辑"
+    },
+    "buttons": {
+      "submit": "更新"
+    }
+  },
+  "fields": {
+    "slug": "标识 (Slug)",
+    "title": "游戏名称",
+    "content": "游戏详情 (Markdown)",
+    "image": "封面图片",
+    "game_url": "游戏链接",
+    "category": "所属分类",
+    "plays": "播放次数",
+    "likes": "点赞数",
+    "status": "状态",
+    "sort": "排序",
+    "created_at": "创建时间",
+    "updated_at": "更新时间"
+  }
+}

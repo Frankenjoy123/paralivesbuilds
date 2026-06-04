@@ -1,0 +1,85 @@
+{
+  "action": {
+    "page": {
+      "sections": {
+        "gamiary-category-hero": {
+          "id": "gamiary-category-hero",
+          "data": {
+            "title": "2026年最佳免费动作游戏 | Gamiary",
+            "subtitle": "通过动作游戏测试您的反应能力和反应速度。",
+            "also_looking_for": "也在寻找：<strong class=\"text-foreground\">无需下载的动作浏览器游戏</strong>，<strong class=\"text-foreground\">在学校畅玩动作游戏</strong>。",
+            "description": "探索免费动作游戏 — 即玩 HTML5 游戏，支持移动设备的浏览器游戏，无需注册即可快速开启娱乐时刻。",
+            "explore_text": "探索更多动作游戏",
+            "games_count": "137 个游戏",
+            "free_text": "免费游玩",
+            "breadcrumb_parent": "首页",
+            "breadcrumb_current": "动作游戏"
+          }
+        },
+        "gamiary-category-grid": {
+          "id": "gamiary-category-grid"
+        }
+      },
+      "show_sections": ["gamiary-category-hero", "gamiary-category-grid"]
+    }
+  },
+  "puzzle": {
+    "page": {
+      "sections": {
+        "gamiary-category-hero": {
+          "id": "gamiary-category-hero",
+          "data": {
+            "title": "趣味益智游戏 — 立即在线游玩",
+            "subtitle": "用最佳在线益智游戏集锦挑战您的思维。",
+            "description": "通过我们精心挑选的益智游戏放松并磨练您的大脑。无需下载，老少皆宜。",
+            "explore_text": "更多益智挑战",
+            "games_count": "94 个游戏",
+            "free_text": "免费游玩",
+            "breadcrumb_parent": "首页",
+            "breadcrumb_current": "益智游戏"
+          }
+        },
+        "gamiary-category-grid": {
+          "id": "gamiary-category-grid"
+        }
+      },
+      "show_sections": ["gamiary-category-hero", "gamiary-category-grid"]
+    }
+  },
+  "racing": {
+    "page": {
+      "sections": {
+        "gamiary-category-hero": {
+          "id": "gamiary-category-hero",
+          "data": { "title": "免费赛车游戏 — 速度与激情", "breadcrumb_parent": "首页", "breadcrumb_current": "赛车游戏" }
+        },
+        "gamiary-category-grid": { "id": "gamiary-category-grid" }
+      },
+      "show_sections": ["gamiary-category-hero", "gamiary-category-grid"]
+    }
+  },
+  "sports": {
+    "page": {
+      "sections": {
+        "gamiary-category-hero": {
+          "id": "gamiary-category-hero",
+          "data": { "title": "在线体育游戏", "breadcrumb_parent": "首页", "breadcrumb_current": "体育游戏" }
+        },
+        "gamiary-category-grid": { "id": "gamiary-category-grid" }
+      },
+      "show_sections": ["gamiary-category-hero", "gamiary-category-grid"]
+    }
+  },
+  "strategy": {
+    "page": {
+      "sections": {
+        "gamiary-category-hero": {
+          "id": "gamiary-category-hero",
+          "data": { "title": "策略游戏在线玩", "breadcrumb_parent": "首页", "breadcrumb_current": "策略游戏" }
+        },
+        "gamiary-category-grid": { "id": "gamiary-category-grid" }
+      },
+      "show_sections": ["gamiary-category-hero", "gamiary-category-grid"]
+    }
+  }
+}
