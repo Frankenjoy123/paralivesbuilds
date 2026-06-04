@@ -36,7 +36,11 @@ export function ParalivesBuildCard({
     return n.toString();
   };
 
-  const coverImage = image || '/imgs/placeholder-build.webp';
+  const coverImage = image
+    ? image.startsWith('http') || image.startsWith('/')
+      ? image
+      : `/api/images/${image}`
+    : '/imgs/placeholder-build.webp';
 
   return (
     <Link

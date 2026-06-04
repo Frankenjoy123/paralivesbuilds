@@ -20,7 +20,10 @@ export function ParalivesBuildDetail({
   const t = useTranslations('paralives');
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const images = build.images ? JSON.parse(build.images) : [];
+  const rawImages = build.images ? JSON.parse(build.images) : [];
+  const images = rawImages.map((img: string) =>
+    img.startsWith('http') || img.startsWith('/') ? img : `/api/images/${img}`
+  );
   const infoItems = [
     { label: t('lot_size') || 'Lot Size', value: build.lotSize || '-' },
     { label: t('floors') || 'Floors', value: build.floors || '-' },

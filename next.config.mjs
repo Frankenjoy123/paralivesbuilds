@@ -31,6 +31,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '*',
       },
+      {
+        protocol: 'https',
+        hostname: 'image.paralivesbuilds.com',
+      },
     ],
   },
   async redirects() {

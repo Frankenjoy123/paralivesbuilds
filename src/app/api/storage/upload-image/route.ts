@@ -1,6 +1,6 @@
 import { md5 } from '@/shared/lib/hash';
 import { respData, respErr } from '@/shared/lib/resp';
-import { getStorageService } from '@/shared/services/storage';
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 
 const extFromMime = (mimeType: string) => {
   const map: Record<string, string> = {
@@ -35,7 +35,8 @@ export async function POST(req: Request) {
       return respErr('No files provided');
     }
 
-    const storageService = await getStorageService();
+    const { env } = getCloudflareContext();
+    const bucket = (env as any).IMAGES_BUCKET as any;
     const uploadResults = [];
 
     for (const file of files) {
@@ -50,42 +51,42 @@ export async function POST(req: Request) {
 
       const digest = md5(body);
       const ext = extFromMime(file.type) || file.name.split('.').pop() || 'bin';
-      const key = `${digest}.${ext}`;
+      const key = `uploads/${digest}.${ext}`;
 
-      // If the same image already exists, reuse its URL to save storage space.
-      // (Still depends on provider supporting signed HEAD + public url generation.)
-      const exists = await storageService.exists({ key });
-      if (exists) {
-        const publicUrl = storageService.getPublicUrl({ key });
-        if (publicUrl) {
+      const imageDomain = process.env.NEXT_PUBLIC_IMAGE_DOMAIN;
+      let url: string;
+
+      if (bucket) {
+        // Check if exists
+        const existing = await bucket.head(key);
+        if (existing) {
+          url = imageDomain ? `${imageDomain}/${key}` : `/api/images/${key}`;
           uploadResults.push({
-            url: publicUrl,
+            url,
             key,
             filename: file.name,
             deduped: true,
           });
           continue;
         }
+
+        // Upload to R2
+        await bucket.put(key, body, {
+          httpMetadata: {
+            contentType: file.type,
+            contentDisposition: 'inline',
+          },
+        });
+
+        url = imageDomain ? `${imageDomain}/${key}` : `/api/images/${key}`;
+        console.log('[API] R2 upload success:', key);
+      } else {
+        return respErr('Storage not configured');
       }
-
-      // Upload to storage
-      const result = await storageService.uploadFile({
-        body,
-        key: key,
-        contentType: file.type,
-        disposition: 'inline',
-      });
-
-      if (!result.success) {
-        console.error('[API] Upload failed:', result.error);
-        return respErr(result.error || 'Upload failed');
-      }
-
-      console.log('[API] Upload success:', result.url);
 
       uploadResults.push({
-        url: result.url,
-        key: result.key,
+        url,
+        key,
         filename: file.name,
         deduped: false,
       });
