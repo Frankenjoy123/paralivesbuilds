@@ -2,6 +2,7 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { oneTap } from 'better-auth/plugins';
 import { getLocale } from 'next-intl/server';
 
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { db } from '@/core/db';
 import { envConfigs } from '@/config';
 import * as schema from '@/config/db/schema';
@@ -17,6 +18,39 @@ import { getClientIp } from '@/shared/lib/ip';
 import { grantCreditsForNewUser } from '@/shared/models/credit';
 import { getEmailService } from '@/shared/services/email';
 import { grantRoleForNewUser } from '@/shared/services/rbac';
+
+function getServerAuthURL(): string {
+  try {
+    const cfEnv = getCloudflareContext().env as Record<string, unknown>;
+    const url = cfEnv.AUTH_URL || cfEnv.NEXT_PUBLIC_APP_URL;
+    if (url) return String(url);
+  } catch {
+    // not in Cloudflare context
+  }
+  return envConfigs.auth_url;
+}
+
+function getServerAuthSecret(): string {
+  try {
+    const cfEnv = getCloudflareContext().env as Record<string, unknown>;
+    const secret = cfEnv.AUTH_SECRET;
+    if (secret) return String(secret);
+  } catch {
+    // not in Cloudflare context
+  }
+  return envConfigs.auth_secret;
+}
+
+function getServerAppURL(): string {
+  try {
+    const cfEnv = getCloudflareContext().env as Record<string, unknown>;
+    const url = cfEnv.NEXT_PUBLIC_APP_URL;
+    if (url) return String(url);
+  } catch {
+    // not in Cloudflare context
+  }
+  return envConfigs.app_url;
+}
 
 // Best-effort dedupe to prevent sending verification emails too frequently.
 // This is especially helpful in dev/hot reload, transient network conditions,
@@ -76,8 +110,23 @@ export async function getAuthOptions(configs: Record<string, string>) {
   const emailVerificationEnabled =
     configs.email_verification_enabled === 'true' && !!configs.resend_api_key;
 
+  const serverAuthURL = getServerAuthURL();
+  const serverAppURL = getServerAppURL();
+  const serverAuthSecret = getServerAuthSecret();
+
+  console.log('[AuthConfig] baseURL:', serverAuthURL);
+  console.log('[AuthConfig] trustedOrigins:', serverAppURL);
+  console.log('[AuthConfig] auth_secret exists:', !!serverAuthSecret);
+  console.log('[AuthConfig] google_client_id exists:', !!configs.google_client_id);
+  console.log('[AuthConfig] google_client_secret exists:', !!configs.google_client_secret);
+
   return {
     ...authOptions,
+    // Override baseURL, secret and trustedOrigins with runtime values
+    // (wrangler.toml vars are only available at runtime in Cloudflare Workers)
+    baseURL: serverAuthURL,
+    secret: serverAuthSecret,
+    trustedOrigins: serverAppURL ? [serverAppURL] : [],
     // Add database connection only when actually needed (runtime)
     // D1 is only available inside Cloudflare Workers runtime (not during build)
     database: (envConfigs.database_url || (envConfigs.database_provider === 'd1' && isCloudflareWorker))
@@ -215,11 +264,22 @@ export async function getSocialProviders(configs: Record<string, string>) {
   const providers: any = {};
 
   // google auth
-  if (configs.google_client_id && configs.google_client_secret) {
+  console.log(
+    '[AuthConfig] google_client_id:',
+    configs.google_client_id ? 'set' : 'missing',
+    'google_client_secret:',
+    configs.google_client_secret ? 'set' : 'missing'
+  );
+  if (
+    configs.google_auth_enabled === 'true' &&
+    configs.google_client_id &&
+    configs.google_client_secret
+  ) {
     providers.google = {
       clientId: configs.google_client_id,
       clientSecret: configs.google_client_secret,
     };
+    console.log('[AuthConfig] Google provider registered');
   }
 
   // github auth

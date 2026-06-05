@@ -3,6 +3,29 @@ import { createAuthClient } from 'better-auth/react';
 
 import { envConfigs } from '@/config';
 
+/**
+ * Get the correct auth base URL.
+ * In production (Cloudflare Workers), wrangler.toml vars are only available
+ * at runtime, not during the Next.js client build. If the build-time value
+ * is localhost/empty, fall back to the current page origin so the auth
+ * client talks to the right endpoint.
+ */
+function getAuthBaseURL(): string {
+  const configUrl = envConfigs.auth_url;
+  if (typeof window === 'undefined') {
+    return configUrl;
+  }
+  // If config URL is empty or points to localhost, use current origin
+  if (
+    !configUrl ||
+    configUrl.includes('localhost') ||
+    configUrl.includes('127.0.0.1')
+  ) {
+    return window.location.origin;
+  }
+  return configUrl;
+}
+
 function createGetSessionThrottledFetch({
   minIntervalMs,
 }: {
@@ -81,7 +104,7 @@ const AUTH_GET_SESSION_MIN_INTERVAL_MS =
 
 // create default auth client, without plugins
 export const authClient = createAuthClient({
-  baseURL: envConfigs.auth_url,
+  baseURL: getAuthBaseURL(),
   fetchOptions: {
     // Avoid amplifying request storms (e.g. during env/db switching in dev).
     // IMPORTANT: auth mutations (sign-in/sign-up) must be non-retriable,
@@ -99,7 +122,7 @@ export const { useSession, signIn, signUp, signOut } = authClient;
 // get auth client with plugins
 export function getAuthClient(configs: Record<string, string>) {
   const authClient = createAuthClient({
-    baseURL: envConfigs.auth_url,
+    baseURL: getAuthBaseURL(),
     plugins: getAuthPlugins(configs),
     fetchOptions: {
       // Avoid amplifying request storms (e.g. during env/db switching in dev).

@@ -1,5 +1,6 @@
 import { revalidateTag, unstable_cache } from 'next/cache';
 
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { db } from '@/core/db';
 import { envConfigs } from '@/config';
 import { config } from '@/config/db/schema';
@@ -8,15 +9,6 @@ import {
   getAllSettingNames,
   publicSettingNames,
 } from '@/shared/services/settings';
-
-// Lazy import to avoid breaking non-Cloudflare builds
-let getCloudflareContext: (() => { env: Record<string, unknown> }) | undefined;
-try {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  getCloudflareContext = require('@opennextjs/cloudflare').getCloudflareContext;
-} catch {
-  getCloudflareContext = undefined;
-}
 
 export type Config = typeof config.$inferSelect;
 export type NewConfig = typeof config.$inferInsert;
@@ -111,24 +103,24 @@ export const getConfigs = unstable_cache(
 export async function getAllConfigs(): Promise<Configs> {
   let dbConfigs: Configs = {};
 
+  // CRITICAL: Capture Cloudflare env BEFORE any await, because
+  // AsyncLocalStorage context can be lost after await in Workers.
+  let cfEnv: Record<string, unknown> = {};
+  try {
+    cfEnv = getCloudflareContext().env as Record<string, unknown>;
+    console.log('[Config] cfEnv keys:', Object.keys(cfEnv).slice(0, 20));
+  } catch (e) {
+    console.log('[Config] getCloudflareContext failed:', e);
+  }
+
   // only get configs from db in server side
   const hasDb = envConfigs.database_url || (envConfigs.database_provider === 'd1' && isCloudflareWorker);
   if (typeof window === 'undefined' && hasDb) {
     try {
       dbConfigs = await getConfigs();
     } catch (e) {
-      console.log(`get configs from db failed:`, e);
+      console.log(`[Config] get configs from db failed:`, e);
       dbConfigs = {};
-    }
-  }
-
-  // Try Cloudflare Workers env first (wrangler vars/secrets)
-  let cfEnv: Record<string, unknown> = {};
-  if (getCloudflareContext) {
-    try {
-      cfEnv = getCloudflareContext().env || {};
-    } catch {
-      // ignore - not in Cloudflare context
     }
   }
 
@@ -150,6 +142,9 @@ export async function getAllConfigs(): Promise<Configs> {
     ...envConfigs,
     ...dbConfigs,
   };
+
+  console.log('[Config] google_client_id:', configs.google_client_id ? 'set' : 'missing');
+  console.log('[Config] google_auth_enabled:', configs.google_auth_enabled);
 
   return configs;
 }

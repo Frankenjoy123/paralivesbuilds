@@ -1,9 +1,28 @@
+import { getCloudflareContext } from '@opennextjs/cloudflare';
 import { envConfigs } from '@/config';
 
 import { getD1Db } from './d1';
 import { closeMysqlDb, getMysqlDb } from './mysql';
 import { closePostgresDb, getPostgresDb } from './postgres';
 import { getSqliteDb } from './sqlite';
+
+/**
+ * Get the actual database provider at runtime.
+ * In Cloudflare Workers, wrangler.toml vars are only available at runtime,
+ * not during the Next.js build. We read them via getCloudflareContext().
+ */
+function getRuntimeDatabaseProvider(): string {
+  try {
+    const cfEnv = getCloudflareContext().env as Record<string, unknown>;
+    const provider = cfEnv.DATABASE_PROVIDER;
+    if (typeof provider === 'string' && provider) {
+      return provider;
+    }
+  } catch {
+    // not in Cloudflare context
+  }
+  return envConfigs.database_provider;
+}
 
 const mysqlCompatProxyCache = new WeakMap<object, any>();
 const sqliteCompatProxyCache = new WeakMap<object, any>();
@@ -188,15 +207,17 @@ function withSqliteCompat<T extends object>(dbInstance: T, provider?: string): T
  * So we intentionally return `any` to keep call sites stable.
  */
 export function db(): any {
-  if (envConfigs.database_provider === 'd1') {
+  const provider = getRuntimeDatabaseProvider();
+
+  if (provider === 'd1') {
     return withSqliteCompat(getD1Db() as any, 'd1');
   }
 
-  if (['sqlite', 'turso'].includes(envConfigs.database_provider)) {
-    return withSqliteCompat(getSqliteDb() as any, envConfigs.database_provider);
+  if (['sqlite', 'turso'].includes(provider)) {
+    return withSqliteCompat(getSqliteDb() as any, provider);
   }
 
-  if (envConfigs.database_provider === 'mysql') {
+  if (provider === 'mysql') {
     return withMysqlCompat(getMysqlDb() as any);
   }
 
