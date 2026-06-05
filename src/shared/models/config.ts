@@ -9,6 +9,15 @@ import {
   publicSettingNames,
 } from '@/shared/services/settings';
 
+// Lazy import to avoid breaking non-Cloudflare builds
+let getCloudflareContext: (() => { env: Record<string, unknown> }) | undefined;
+try {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  getCloudflareContext = require('@opennextjs/cloudflare').getCloudflareContext;
+} catch {
+  getCloudflareContext = undefined;
+}
+
 export type Config = typeof config.$inferSelect;
 export type NewConfig = typeof config.$inferInsert;
 export type UpdateConfig = Partial<Omit<NewConfig, 'name'>>;
@@ -113,11 +122,24 @@ export async function getAllConfigs(): Promise<Configs> {
     }
   }
 
+  // Try Cloudflare Workers env first (wrangler vars/secrets)
+  let cfEnv: Record<string, unknown> = {};
+  if (isCloudflareWorker && getCloudflareContext) {
+    try {
+      cfEnv = getCloudflareContext().env || {};
+    } catch {
+      // ignore
+    }
+  }
+
   const settingNames = await getAllSettingNames();
   settingNames.forEach((key) => {
     const upperKey = key.toUpperCase();
-    // use env configs if available
-    if (process.env[upperKey]) {
+    // Priority: Cloudflare env > process.env > db config
+    const cfValue = cfEnv[key] ?? cfEnv[upperKey];
+    if (cfValue !== undefined) {
+      dbConfigs[key] = String(cfValue);
+    } else if (process.env[upperKey]) {
       dbConfigs[key] = process.env[upperKey] ?? '';
     } else if (process.env[key]) {
       dbConfigs[key] = process.env[key] ?? '';
