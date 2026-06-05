@@ -43,7 +43,7 @@ export async function POST(req: Request) {
       .from(creator)
       .where(eq(creator.slug, user.id))
       .limit(1)
-      .then((rows) => rows[0]);
+      .then((rows: any[]) => rows[0]);
 
     if (!creatorRecord) {
       const newCreatorId = nanoid();
