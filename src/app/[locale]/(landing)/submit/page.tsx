@@ -2,7 +2,7 @@
 
 import { useState, useRef, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/core/auth/client';
+import { useSession } from '@/core/auth/client';
 import { useTranslations } from 'next-intl';
 import { ImagePlus, X, Loader2, Home } from 'lucide-react';
 import { Link } from '@/core/i18n/navigation';
@@ -15,7 +15,8 @@ interface Style {
 export default function SubmitBuildPage() {
   const t = useTranslations('paralives');
   const router = useRouter();
-  const { user, isLoading: authLoading } = useAuth();
+  const { data: session, isPending: authLoading } = useSession();
+  const user = session?.user;
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [styles, setStyles] = useState<Style[]>([]);
