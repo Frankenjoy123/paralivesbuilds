@@ -25,7 +25,7 @@ export function ParalivesHero() {
           🔥 {t('hero_cta_browse') || 'Browse Builds'}
         </Link>
         <Link
-          href="/upload"
+          href="/submit"
           className="px-6 py-3 border border-[#e8e6e3] rounded-lg font-medium text-[#1a1a1a] hover:bg-white transition-all duration-200"
         >
           📤 {t('hero_cta_submit') || 'Submit Your Build'}

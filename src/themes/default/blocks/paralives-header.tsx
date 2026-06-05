@@ -158,7 +158,7 @@ export function ParalivesHeader() {
           </div>
 
           <Link
-            href="/upload"
+            href="/submit"
             className="hidden sm:inline-flex px-5 py-2.5 bg-[#e07a5f] text-white text-sm font-semibold rounded-lg hover:bg-[#c96a52] transition-all duration-200"
           >
             {t('submit_build') || 'Submit Build'}
@@ -194,7 +194,7 @@ export function ParalivesHeader() {
               </Link>
             ))}
             <Link
-              href="/upload"
+              href="/submit"
               className="inline-flex items-center justify-center px-5 py-2.5 bg-[#e07a5f] text-white text-sm font-semibold rounded-lg mt-2"
             >
               {t('submit_build') || 'Submit Build'}
