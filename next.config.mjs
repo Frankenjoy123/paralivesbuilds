@@ -23,6 +23,7 @@ const nextConfig = {
   // this the OpenNext bundler can fail to resolve it.
   serverExternalPackages: ['@libsql/client', '@libsql/isomorphic-ws'],
   images: {
+    unoptimized: true,
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     qualities: [60, 70, 75],
