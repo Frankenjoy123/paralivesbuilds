@@ -40,7 +40,16 @@ export async function generateMetadata({
   const title = `${result.title} - Paralives Build by ${result.creatorName || 'Unknown Creator'}`;
   const description = result.description || `Check out ${result.title}, a ${result.styleName || ''} build in Paralives.`;
   const images = result.images ? JSON.parse(result.images) : [];
-  const imageUrl = images[0] || envConfigs.app_preview_image;
+  let imageUrl = images[0] || envConfigs.app_preview_image;
+  // Ensure image URL is absolute
+  if (imageUrl && !imageUrl.startsWith('http')) {
+    const baseUrl = envConfigs.app_url.includes('localhost')
+      ? 'https://paralivesbuilds.com'
+      : envConfigs.app_url;
+    imageUrl = imageUrl.startsWith('/')
+      ? `${baseUrl}${imageUrl}`
+      : `${baseUrl}/${imageUrl}`;
+  }
 
   return {
     title,

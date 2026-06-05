@@ -14,6 +14,13 @@ function normalizePath(path: string) {
   return path.startsWith('/') ? path : `/${path}`;
 }
 
+function fixLocalhostUrl(url: string) {
+  if (url.includes('localhost:3000')) {
+    return url.replace('http://localhost:3000', 'https://paralivesbuilds.com').replace('https://localhost:3000', 'https://paralivesbuilds.com');
+  }
+  return url;
+}
+
 export function getOpenGraphLocale(locale: string) {
   return openGraphLocaleMap[locale] || locale;
 }
@@ -21,10 +28,10 @@ export function getOpenGraphLocale(locale: string) {
 export function buildCanonicalUrl(canonicalUrl: string, locale: string) {
   const normalized = normalizePath(canonicalUrl);
   if (normalized.startsWith('http')) {
-    return normalized;
+    return fixLocalhostUrl(normalized);
   }
 
-  let absoluteUrl = `${envConfigs.app_url}${
+  let absoluteUrl = `${fixLocalhostUrl(envConfigs.app_url)}${
     !locale || locale === defaultLocale ? '' : `/${locale}`
   }${normalized}`;
 
@@ -109,9 +116,9 @@ export function getMetadata(
     // image url
     let imageUrl = options.imageUrl || envConfigs.app_preview_image;
     if (imageUrl.startsWith('http')) {
-      imageUrl = imageUrl;
+      imageUrl = fixLocalhostUrl(imageUrl);
     } else {
-      imageUrl = `${envConfigs.app_url}${imageUrl}`;
+      imageUrl = fixLocalhostUrl(`${envConfigs.app_url}${imageUrl}`);
     }
 
     // app name
@@ -156,7 +163,7 @@ export function getMetadata(
         title,
         description,
         images: [imageUrl.toString()],
-        site: envConfigs.app_url,
+        site: fixLocalhostUrl(envConfigs.app_url),
       },
 
       robots: {

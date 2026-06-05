@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "Gamiary",
-    "description": "Gamiary 是用于构建 AI SaaS 创业项目的 NextJS 脚手架。提供丰富模板和组件，助您快速上线产品。",
-    "keywords": "shipany, shipany-boilerplate, shipany-template-two-demo"
+    "title": "ParalivesBuilds - 分享和发现精彩 Paralives 建筑",
+    "description": "发现并分享精美的 Paralives 建筑作品。浏览温馨小屋、现代阁楼、乡村别墅等来自社区的创意设计。",
+    "keywords": "paralives, paralives建筑, paralives房屋, paralives设计, 模拟经营游戏, 房屋建造"
   },
   "sign": {
     "sign_in_title": "登录",
