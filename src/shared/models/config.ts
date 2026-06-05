@@ -124,11 +124,11 @@ export async function getAllConfigs(): Promise<Configs> {
 
   // Try Cloudflare Workers env first (wrangler vars/secrets)
   let cfEnv: Record<string, unknown> = {};
-  if (isCloudflareWorker && getCloudflareContext) {
+  if (getCloudflareContext) {
     try {
       cfEnv = getCloudflareContext().env || {};
     } catch {
-      // ignore
+      // ignore - not in Cloudflare context
     }
   }
 
