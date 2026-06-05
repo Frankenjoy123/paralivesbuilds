@@ -61,7 +61,7 @@ export async function POST(req: Request) {
     const existingSlugs = await db()
       .select({ slug: build.slug })
       .from(build);
-    const slug = generateUniqueSlug(title, existingSlugs.map((r) => r.slug));
+    const slug = generateUniqueSlug(title, existingSlugs.map((r: any) => r.slug));
 
     const now = new Date();
     const newBuildId = nanoid();
