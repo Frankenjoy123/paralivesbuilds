@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /*?*q=
+Disallow: /privacy-policy
+Disallow: /terms-of-service
+Disallow: /settings/*
+Disallow: /activity/*
+Disallow: /admin/*
+Disallow: /api/*
+
+Sitemap: https://paralivesbuilds.com/sitemap.xml

@@ -41,14 +41,12 @@ export async function generateMetadata({
   const description = result.description || `Check out ${result.title}, a ${result.styleName || ''} build in Paralives.`;
   const images = result.images ? JSON.parse(result.images) : [];
   let imageUrl = images[0] || envConfigs.app_preview_image;
-  // Ensure image URL is absolute
+  // Ensure image URL is absolute and points to R2 custom domain
   if (imageUrl && !imageUrl.startsWith('http')) {
-    const baseUrl = envConfigs.app_url.includes('localhost')
-      ? 'https://paralivesbuilds.com'
-      : envConfigs.app_url;
+    const imageDomain = process.env.NEXT_PUBLIC_IMAGE_DOMAIN || 'https://image.paralivesbuilds.com';
     imageUrl = imageUrl.startsWith('/')
-      ? `${baseUrl}${imageUrl}`
-      : `${baseUrl}/${imageUrl}`;
+      ? `${imageDomain}${imageUrl}`
+      : `${imageDomain}/${imageUrl}`;
   }
 
   return {
@@ -106,11 +104,49 @@ export default async function BuildDetailPage({
 
   const BuildDetailPage = await getThemePage('paralives-build-detail');
 
+  // Build Article JSON-LD
+  const rawImages = buildData.images ? JSON.parse(buildData.images) : [];
+  let coverImage = rawImages[0] || '';
+  if (coverImage && !coverImage.startsWith('http')) {
+    const imageDomain = process.env.NEXT_PUBLIC_IMAGE_DOMAIN || 'https://image.paralivesbuilds.com';
+    coverImage = coverImage.startsWith('/') ? `${imageDomain}${coverImage}` : `${imageDomain}/${coverImage}`;
+  }
+
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: buildData.title,
+    description: buildData.description || `Check out ${buildData.title}, a Paralives build.`,
+    image: coverImage,
+    url: `https://paralivesbuilds.com/builds/${slug}`,
+    dateModified: buildData.updatedAt || new Date().toISOString(),
+    author: {
+      '@type': 'Person',
+      name: buildData.creatorName || 'Unknown Creator',
+      url: buildData.creatorSlug ? `https://paralivesbuilds.com/creators/${buildData.creatorSlug}` : undefined,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ParalivesBuilds',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://paralivesbuilds.com/favicon-32x32.png',
+      },
+    },
+    articleSection: buildData.styleName || 'Build',
+  };
+
   return (
-    <BuildDetailPage
-      build={buildData}
-      tags={tags}
-      relatedBuilds={relatedBuilds.filter((b) => b.id !== buildData.id)}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <BuildDetailPage
+        build={buildData}
+        tags={tags}
+        relatedBuilds={relatedBuilds.filter((b) => b.id !== buildData.id)}
+      />
+    </>
   );
 }

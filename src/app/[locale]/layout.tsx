@@ -26,14 +26,33 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const initialConfigs = await getPublicConfigs();
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'ParalivesBuilds',
+    url: 'https://paralivesbuilds.com',
+    logo: 'https://paralivesbuilds.com/favicon-32x32.png',
+    sameAs: [],
+  };
+
   return (
-    <NextIntlClientProvider>
-      <ThemeProvider>
-        <AppContextProvider initialConfigs={initialConfigs}>
-          {children}
-          <Toaster position="top-center" richColors />
-        </AppContextProvider>
-      </ThemeProvider>
-    </NextIntlClientProvider>
+    <html lang={locale}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="overflow-x-hidden">
+        <NextIntlClientProvider>
+          <ThemeProvider>
+            <AppContextProvider initialConfigs={initialConfigs}>
+              {children}
+              <Toaster position="top-center" richColors />
+            </AppContextProvider>
+          </ThemeProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

@@ -3,7 +3,9 @@ import { MetadataRoute } from 'next';
 import { envConfigs } from '@/config';
 
 export default function robots(): MetadataRoute.Robots {
-  const appUrl = envConfigs.app_url;
+  const appUrl = envConfigs.app_url.includes('localhost')
+    ? 'https://paralivesbuilds.com'
+    : envConfigs.app_url;
 
   return {
     rules: {

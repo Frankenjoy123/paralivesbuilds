@@ -30,7 +30,10 @@ function withLocale(pathname: string, locale: string) {
 }
 
 function toAbsoluteUrl(pathname: string) {
-  return `${envConfigs.app_url}${pathname === '/' ? '' : pathname}`;
+  const baseUrl = envConfigs.app_url.includes('localhost')
+    ? 'https://paralivesbuilds.com'
+    : envConfigs.app_url;
+  return `${baseUrl}${pathname === '/' ? '' : pathname}`;
 }
 
 async function fetchAllBuilds() {
