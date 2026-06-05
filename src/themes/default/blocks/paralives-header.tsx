@@ -4,11 +4,13 @@ import { useState, useEffect, useRef } from 'react';
 import { Search, Menu, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/core/i18n/navigation';
+import { SignUser } from '@/shared/blocks/sign/sign-user';
 import { cn } from '@/shared/lib/utils';
 import { usePathname } from 'next/navigation';
 import { searchBuildsAction } from '@/app/[locale]/(landing)/actions';
+import type { Header as HeaderType } from '@/shared/types/blocks/landing';
 
-export function ParalivesHeader() {
+export function ParalivesHeader({ header }: { header?: HeaderType }) {
   const t = useTranslations('paralives');
   const pathname = usePathname();
   const [searchQuery, setSearchQuery] = useState('');
@@ -164,6 +166,12 @@ export function ParalivesHeader() {
             {t('submit_build') || 'Submit Build'}
           </Link>
 
+          {header?.show_sign !== false && (
+            <div className="flex items-center">
+              <SignUser userNav={header?.user_nav} signButtonSize="sm" />
+            </div>
+          )}
+
           {/* Mobile Menu Toggle */}
           <button
             className="md:hidden p-2 text-[#6b6b6b]"
@@ -199,6 +207,11 @@ export function ParalivesHeader() {
             >
               {t('submit_build') || 'Submit Build'}
             </Link>
+            {header?.show_sign !== false && (
+              <div className="mt-2 flex items-center">
+                <SignUser userNav={header?.user_nav} signButtonSize="sm" />
+              </div>
+            )}
           </div>
         </div>
       )}

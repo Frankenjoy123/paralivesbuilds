@@ -2,10 +2,7 @@
 
 import { useState, useRef, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSession } from '@/core/auth/client';
-import { useTranslations } from 'next-intl';
-import { ImagePlus, X, Loader2, Home } from 'lucide-react';
-import { Link } from '@/core/i18n/navigation';
+import { ImagePlus, X, Loader2 } from 'lucide-react';
 
 interface Style {
   id: string;
@@ -13,10 +10,7 @@ interface Style {
 }
 
 export default function SubmitBuildPage() {
-  const t = useTranslations('paralives');
   const router = useRouter();
-  const { data: session, isPending: authLoading } = useSession();
-  const user = session?.user;
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [styles, setStyles] = useState<Style[]>([]);
@@ -114,38 +108,6 @@ export default function SubmitBuildPage() {
       setSubmitting(false);
     }
   };
-
-  if (authLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-[#e07a5f]" />
-      </div>
-    );
-  }
-
-  if (!user) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center px-6">
-        <div className="text-center max-w-md">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#e07a5f] to-[#f2cc8f] flex items-center justify-center text-3xl mx-auto mb-6">
-            🏠
-          </div>
-          <h1 className="text-2xl font-bold text-[#1a1a1a] mb-3">
-            Sign in to Submit
-          </h1>
-          <p className="text-[#6b6b6b] mb-6">
-            Please sign in to share your Paralives builds with the community.
-          </p>
-          <Link
-            href="/sign-in"
-            className="inline-flex px-6 py-3 bg-[#e07a5f] text-white font-semibold rounded-lg hover:bg-[#c96a52] transition-all"
-          >
-            Sign In
-          </Link>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="max-w-[800px] mx-auto px-6 py-10">

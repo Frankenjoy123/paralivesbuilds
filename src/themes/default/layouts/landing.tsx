@@ -20,7 +20,7 @@ export default async function LandingLayout({
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Header />
+      <Header header={header} />
       <main className="relative isolate min-h-screen overflow-x-hidden">
         {children}
       </main>
