@@ -62,6 +62,7 @@ export function ParalivesHeader() {
     { href: '/builds', label: t('nav_browse') || 'Browse' },
     { href: '/creators', label: t('nav_creators') || 'Creators' },
     { href: '/guides', label: t('nav_guides') || 'Guides' },
+    { href: '/submit', label: t('nav_submit') || 'Submit Build' },
   ];
 
   const isActive = (href: string) => {
